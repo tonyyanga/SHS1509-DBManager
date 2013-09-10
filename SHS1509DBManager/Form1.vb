@@ -8,7 +8,7 @@
                 MsgBox("Database file doesn't exist.", vbOKOnly, "DB Error")
             Else
                 DBpath = TextBox3.Text
-                DBconnection = JetDBconnect(DBpath) 'DB Connect
+                DBconnection = JetDBconnect(DBpath, TextBox1.Text, TextBox2.Text) 'DB Connect
                 Try
                     DBconnection.Open()
                     DBconnection.Close()
@@ -24,7 +24,7 @@
             End
         End If
     End Sub
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
         Dim browsedialog As FileDialog = New OpenFileDialog
         With browsedialog
             .AddExtension = True

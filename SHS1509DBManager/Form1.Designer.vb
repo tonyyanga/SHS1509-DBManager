@@ -31,7 +31,6 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -91,15 +90,15 @@ Partial Class Form1
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(50, 178)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(107, 12)
+        Me.Label5.Size = New System.Drawing.Size(71, 12)
         Me.Label5.TabIndex = 6
-        Me.Label5.Text = "Jet Database Path"
+        Me.Label5.Text = "Server Path"
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(161, 173)
+        Me.TextBox3.Location = New System.Drawing.Point(127, 173)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(192, 21)
+        Me.TextBox3.Size = New System.Drawing.Size(226, 21)
         Me.TextBox3.TabIndex = 7
         '
         'Button1
@@ -112,21 +111,11 @@ Partial Class Form1
         Me.Button1.Text = "Login"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(368, 171)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(90, 31)
-        Me.Button2.TabIndex = 9
-        Me.Button2.Text = "Browse"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(469, 298)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.Label5)
@@ -151,6 +140,5 @@ Partial Class Form1
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
 
 End Class

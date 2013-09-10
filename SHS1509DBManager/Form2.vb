@@ -37,7 +37,7 @@ Public Class Form2
         'Convert Room No to StudentName
         For i = (ListBox2.Items.Count - 1) To 0 Step -1
             If IsNumeric(ListBox2.Items(i).ToString) Then
-                DBSQL = New OleDb.OleDbCommand("Select * From Room Where Room = " & ListBox2.Items(i).ToString, DBconnection)
+                DBSQL = New odbc.odbcCommand("Select * From Room Where Room = " & ListBox2.Items(i).ToString, DBconnection)
                 DBReader = DBSQL.ExecuteReader
                 DBReader.Read()
                 For j = 3 To 6
@@ -51,12 +51,12 @@ Public Class Form2
         'Insert Records
         If ListBox2.Items.Count > 0 And IsNumeric(TextBox2.Text) Then
             For i = (ListBox2.Items.Count - 1) To 0 Step -1
-                DBSQL = New OleDb.OleDbCommand("Select * From students Where studentname ='" _
+                DBSQL = New odbc.odbcCommand("Select * From students Where studentname ='" _
                 & ListBox2.Items(i).ToString & "'", DBconnection)
                 DBReader = DBSQL.ExecuteReader
                 DBReader.Read()
                 StudentNo = DBReader.Item("studentno").ToString
-                DBSQL = New OleDb.OleDbCommand("Insert into [general] ([Time], StudentNo, [Number], Reason, Person) Values (" _
+                DBSQL = New odbc.odbcCommand("Insert into [general] ([Time], StudentNo, [Number], Reason, Person) Values (" _
                 & day & "," & _
                 StudentNo & "," & TextBox2.Text & ",'" & TextBox3.Text & "','" & TextBox4.Text & "')", DBconnection)
                 DBSQL.ExecuteNonQuery()
@@ -79,12 +79,12 @@ Public Class Form2
             ListBox2.Items.RemoveAt(i)
         Next
         DBconnection.Open()
-        DBSQL = New OleDb.OleDbCommand("Select * From students", DBconnection)
+        DBSQL = New odbc.odbcCommand("Select * From students", DBconnection)
         DBReader = DBSQL.ExecuteReader
         Do While DBReader.Read()
             ListBox1.Items.Add(DBReader.Item("studentname"))
         Loop
-        DBSQL = New OleDb.OleDbCommand("Select * From Room", DBconnection)
+        DBSQL = New odbc.odbcCommand("Select * From Room", DBconnection)
         DBReader = DBSQL.ExecuteReader
         Do While DBReader.Read()
             ListBox1.Items.Add(DBReader.Item("Room"))
@@ -104,7 +104,7 @@ Public Class Form2
             ListBox4.Items.RemoveAt(i)
         Next
         DBconnection.Open()
-        DBSQL = New OleDb.OleDbCommand("Select * From students", DBconnection)
+        DBSQL = New odbc.odbcCommand("Select * From students", DBconnection)
         DBReader = DBSQL.ExecuteReader
         Do While DBReader.Read()
             ListBox4.Items.Add(DBReader.Item("studentname"))
@@ -187,7 +187,7 @@ Public Class Form2
         With sheet
             .Range("C2").Value2 = "Total score"
             DBconnection.Open()
-            DBSQL = New OleDb.OleDbCommand("Select * From students", DBconnection)
+            DBSQL = New odbc.odbcCommand("Select * From students", DBconnection)
             DBReader = DBSQL.ExecuteReader
             i = 3
             Do While DBReader.Read()
@@ -198,7 +198,7 @@ Public Class Form2
             j = i - 1
             For i = 3 To j
                 sum = 0
-                DBSQL = New OleDb.OleDbCommand("Select * From [general] where studentno = " & .Range("A" & CStr(i)).Value2 & " and datediff('d',[Time]," & temp & ") <=0", DBconnection)
+                DBSQL = New odbc.odbcCommand("Select * From [general] where studentno = " & .Range("A" & CStr(i)).Value2 & " and datediff('d',[Time]," & temp & ") <=0", DBconnection)
                 DBReader = DBSQL.ExecuteReader
                 Do While DBReader.Read()
                     sum = sum + Val(DBReader.Item("Number"))
@@ -217,7 +217,7 @@ Public Class Form2
             .Range("E2").Value2 = "By whom"
             .Range("F2").Value2 = "Number"
             DBconnection.Open()
-            DBSQL = New OleDb.OleDbCommand("Select * From [general] where datediff('d',[Time]," & temp & ") <=0", DBconnection)
+            DBSQL = New odbc.odbcCommand("Select * From [general] where datediff('d',[Time]," & temp & ") <=0", DBconnection)
             DBReader = DBSQL.ExecuteReader
             i = 3
             Do While DBReader.Read()
@@ -231,7 +231,7 @@ Public Class Form2
             j = i - 1
             For i = 3 To j
                 If .Range("A" & CStr(i)).Value2 <> 0 Then
-                    DBSQL = New OleDb.OleDbCommand("Select * From students Where studentno =" & .Range("A" & CStr(i)).Value2, DBconnection)
+                    DBSQL = New odbc.odbcCommand("Select * From students Where studentno =" & .Range("A" & CStr(i)).Value2, DBconnection)
                     DBReader = DBSQL.ExecuteReader
                     DBReader.Read()
                     .Range("B" & CStr(i)).Value2 = DBReader.Item("studentname")
